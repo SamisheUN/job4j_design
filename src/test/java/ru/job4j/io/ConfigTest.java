@@ -2,9 +2,6 @@ package ru.job4j.io;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
@@ -18,16 +15,16 @@ public class ConfigTest {
         String path = "./data/pair_without_comment.properties";
         Config config = new Config(path);
         config.load();
-        assertThat(config.value("name"),is("Petr Arsentev"));
+        assertThat(config.value("name"), is("Petr Arsentev"));
     }
 
     /**
      * #привет мир!
-     *
+     * <p>
      * name=Andrey S, = no, not =
-     *
+     * <p>
      * #
-     *
+     * <p>
      * age=33
      */
     @Test
@@ -35,8 +32,8 @@ public class ConfigTest {
         String path = "./data/pair_with_comments_and_empty_lines.properties";
         Config config = new Config(path);
         config.load();
-        assertThat(config.value("name"),is("Andrey S, "));
-        assertThat(config.value("age"),is("33"));
+        assertThat(config.value("name"), is("Andrey S, "));
+        assertThat(config.value("age"), is("33"));
     }
 
     /**
@@ -62,7 +59,7 @@ public class ConfigTest {
         String path = "./data/only_incorrect_pattern.properties";
         Config config = new Config(path);
         config.load();
-        assertThat(config.value("name"),is("Andrey"));
+        assertThat(config.value("name"), is("Andrey"));
     }
 
     @Test
