@@ -32,7 +32,7 @@ public class Config {
      * <p>
      * Все остальные варианты - выброс исключения.
      */
-    public boolean isLineInformative(String line) {
+    private boolean isLineInformative(String line) {
         boolean rsl = false;
         Pattern correctPattern = Pattern.compile("^(.[^#]+)?\\S+(.+)?=(.+)?\\S+(.+)?$");
         Pattern commentPattern = Pattern.compile("^#(.+)?$");
@@ -64,10 +64,11 @@ public class Config {
     }
 
     public String value(String key) {
-        if (!values.containsKey(key)) {
-            throw new UnsupportedOperationException("Don't impl this method yet!");
+        String rsl = null;
+        if (values.containsKey(key)) {
+            rsl = values.get(key);
         }
-        return values.get(key);
+        return rsl;
     }
 
     @Override

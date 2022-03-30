@@ -1,5 +1,6 @@
 package ru.job4j.io;
 
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
@@ -16,6 +17,7 @@ public class ConfigTest {
         Config config = new Config(path);
         config.load();
         assertThat(config.value("name"), is("Petr Arsentev"));
+        assertThat(config.value("surname"), is(Matchers.nullValue()));
     }
 
     /**
@@ -60,18 +62,5 @@ public class ConfigTest {
         Config config = new Config(path);
         config.load();
         assertThat(config.value("name"), is("Andrey"));
-    }
-
-    @Test
-    public void isLineCorrectTest() {
-        Config conf = new Config("./");
-        assertTrue(conf.isLineInformative(" Wonderful = world "));
-        assertTrue(conf.isLineInformative(" Wond erful = wor ld "));
-        assertTrue(conf.isLineInformative(" 12n!@#de$rful = wor!@#$%^&*(l "));
-        assertTrue(conf.isLineInformative(" 1#2n!@=#de$rful = wor!@#$=%^&*(l "));
-
-        assertFalse(conf.isLineInformative("#dfWorld is wonderful"));
-        assertFalse(conf.isLineInformative("#Wonderful=world"));
-        assertFalse(conf.isLineInformative("# Wonde rful = wor ld "));
     }
 }
