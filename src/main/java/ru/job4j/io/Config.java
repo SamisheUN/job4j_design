@@ -23,8 +23,7 @@ public class Config {
      * Шаблон комментария: обязательно одиночный # и далее любые символы или конец строки
      * <p>
      * Шаблон верного функционального присвоения состоит из частей:
-     * с начала строки любые символы, кроме #
-     * (чтобы не читались комментарии подходящие под функциональные строки, но пробелом перед #)
+     * с начала строки любые символы, кроме "#" и "="
      * обязательная группа больше одного буквенного (это и есть параметр)
      * затем любые символы (пробелы, или часть параметра)
      * обязательное =
@@ -34,7 +33,7 @@ public class Config {
      */
     private boolean isLineInformative(String line) {
         boolean rsl = false;
-        Pattern correctPattern = Pattern.compile("^(.[^#]+)?\\S+(.+)?=(.+)?\\S+(.+)?$");
+        Pattern correctPattern = Pattern.compile("^[^=](.[^#]+)?\\S+(.+)?=(.+)?\\S+(.+)?$");
         Pattern commentPattern = Pattern.compile("^#(.+)?$");
         boolean lineIsComment = line.matches(String.valueOf(commentPattern));
         boolean lineIsEmpty = line.length() == 0;
@@ -44,7 +43,7 @@ public class Config {
             throw new IllegalArgumentException("The line is incorrect.");
         }
         if (!lineIsEmpty && !lineIsComment) {
-                rsl = true;
+            rsl = true;
         }
         return rsl;
     }
@@ -56,7 +55,7 @@ public class Config {
             read.lines().forEach(array::add);
             for (String line : array) {
                 if (isLineInformative(line)) {
-                    lineArr = line.split("=");
+                    lineArr = line.split("=", 2);
                     values.put(lineArr[0], lineArr[1]);
                 }
             }
