@@ -36,13 +36,15 @@ public class Config {
         boolean rsl = false;
         Pattern correctPattern = Pattern.compile("^(.[^#]+)?\\S+(.+)?=(.+)?\\S+(.+)?$");
         Pattern commentPattern = Pattern.compile("^#(.+)?$");
-        if (line.length() > 0
-                && !line.matches(String.valueOf(commentPattern))) {
-            if (line.matches(String.valueOf(correctPattern))) {
+        boolean lineIsComment = line.matches(String.valueOf(commentPattern));
+        boolean lineIsEmpty = line.length() == 0;
+        boolean lineIsCorrect = line.matches(String.valueOf(correctPattern));
+        if (!lineIsEmpty && !(lineIsComment
+                || lineIsCorrect)) {
+            throw new IllegalArgumentException("The line is incorrect.");
+        }
+        if (!lineIsEmpty && !lineIsComment) {
                 rsl = true;
-            } else {
-                throw new IllegalArgumentException("The line is incorrect.");
-            }
         }
         return rsl;
     }
