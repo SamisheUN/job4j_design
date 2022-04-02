@@ -6,12 +6,7 @@ import java.util.List;
 
 public class Analyze {
     public static void main(String[] args) {
-        try (PrintWriter out = new PrintWriter(new FileOutputStream("unavailable.csv"))) {
-            out.println("15:01:30;15:02:32");
-            out.println("15:10:30;23:12:32");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        new Analyze().unavailable("./server.log", "./unavailable.csv");
     }
 
     private boolean isLineAboutShutdown(String line) {
