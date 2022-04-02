@@ -1,8 +1,6 @@
 package ru.job4j.io;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Analyze {
     public static void main(String[] args) {
@@ -14,11 +12,14 @@ public class Analyze {
     }
 
     public void unavailable(String source, String target) {
-        List<String> resultList = new ArrayList<>();
         String[] lineAsArray;
         boolean isOn = true;
         String currentOfflinePeriod = "--:--:--";
-        try (BufferedReader read = new BufferedReader(new FileReader(source))) {
+        try (BufferedReader read = new BufferedReader(new FileReader(source));
+             PrintWriter out = new PrintWriter(
+                     new BufferedOutputStream(
+                             new FileOutputStream(target)
+                     ))) {
             for (String line = read.readLine();
                  line != null; line = read.readLine()) {
                 if (isOn && isLineAboutShutdown(line)) {
@@ -29,22 +30,9 @@ public class Analyze {
                     isOn = true;
                     lineAsArray = line.split(" ");
                     currentOfflinePeriod = currentOfflinePeriod + ";" + lineAsArray[1];
-                    resultList.add(currentOfflinePeriod);
+                    out.println(currentOfflinePeriod);
                 }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        writeToFile(resultList, target);
-    }
 
-    private void writeToFile(List<String> list, String target) {
-        try (PrintWriter out = new PrintWriter(
-                new BufferedOutputStream(
-                        new FileOutputStream(target)
-                ))) {
-            for (String line : list) {
-                out.println(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
