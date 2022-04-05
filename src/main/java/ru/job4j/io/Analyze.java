@@ -29,7 +29,8 @@ public class Analyze {
                 } else if (!isOn && !isLineAboutShutdown(line)) {
                     isOn = true;
                     lineAsArray = line.split(" ");
-                    currentOfflinePeriod = currentOfflinePeriod + ";" + lineAsArray[1];
+                    currentOfflinePeriod = currentOfflinePeriod + ";"
+                            + lineAsArray[1] + ";";
                     out.println(currentOfflinePeriod);
                 }
 
