@@ -14,12 +14,14 @@ public class Dir {
                     String.format("Not directory %s", file.getAbsoluteFile()));
         }
         for (File subfile : file.listFiles()) {
-            if (!file.isDirectory()) {
-                System.out.println(subfile.getName() + " size is about: "
-                        + (int) (subfile.length() * 0.00097656) + "Kb");
+            if (!subfile.isDirectory()) {
+                System.out.println(String.format("File %s size is about: %d Kb",
+                        subfile.getName(),
+                        (int) (subfile.length() * 0.00097656)));
             } else {
-                System.out.println(subfile.getName() + " size misidentified as: "
-                        + (int) (subfile.length() * 0.00097656) + "Kb");
+                System.out.println(String.format("Directory %s size misidentified as: %d Kb",
+                        subfile.getName(),
+                        ((int) (subfile.length() * 0.00097656))));
             }
         }
     }
