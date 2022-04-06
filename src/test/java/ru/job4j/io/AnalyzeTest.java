@@ -6,8 +6,8 @@ import org.junit.rules.TemporaryFolder;
 
 import java.io.*;
 
-import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 public class AnalyzeTest {
     @Rule
