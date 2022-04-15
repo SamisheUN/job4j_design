@@ -13,10 +13,10 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
     private HashMap<FileProperty, List<Path>> filesCatalog = new HashMap<>();
 
     public void showDups() {
-        for (var val : filesCatalog.values()) {
-            if (val.size() > 1) {
-                for (var filePa : val) {
-                    System.out.println(filePa);
+        for (var copiesList : filesCatalog.values()) {
+            if (copiesList.size() > 1) {
+                for (var copyPath : copiesList) {
+                    System.out.println(copyPath);
                 }
                 System.out.println();
             }
