@@ -10,7 +10,8 @@ import java.util.function.Predicate;
 
 public class Search {
     public static void main(String[] args) throws IOException {
-        validation(Path.of(args[0]), args[1]);
+        argsQuantityValidation(args.length);
+        argsQualityValidation(Path.of(args[0]), args[1]);
         Path start = Paths.get(args[0]);
         search(start, p -> p.toFile().getName().endsWith(args[1])).forEach(System.out::println);
     }
@@ -21,7 +22,13 @@ public class Search {
         return searcher.getPaths();
     }
 
-    private static void validation(Path path, String extention) {
+    private static void argsQuantityValidation(int length) {
+        if (length < 2) {
+            throw new IllegalArgumentException("Not enough required arguments to start search.");
+        }
+    }
+
+    private static void argsQualityValidation(Path path, String extention) {
         File file = path.toFile();
         if (!file.exists()) {
             throw new IllegalArgumentException(String.format(
@@ -31,13 +38,9 @@ public class Search {
             throw new IllegalArgumentException(String.format(
                     "Not directory %s", file.getAbsoluteFile()));
         }
-        if (extention.length() < 1 || extention.equals(null)) {
-            throw new IllegalArgumentException(String.format(
-                    "Extension is too short or missing."));
-        }
-        if (!".".equals(extention.charAt(0))) {
-            throw new IllegalArgumentException(String.format(
-                    "The first character of the extension must be a dot."));
+        if (extention.length() < 1) {
+            throw new IllegalArgumentException(
+                    "End of file name parameter is too short.");
         }
     }
 }
