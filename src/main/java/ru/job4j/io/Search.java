@@ -40,7 +40,11 @@ public class Search {
         }
         if (extention.length() < 1) {
             throw new IllegalArgumentException(
-                    "End of file name parameter is too short.");
+                    "Extension parameter is too short.");
+        }
+        if (!(extention.charAt(0) == '=')) {
+            throw new IllegalArgumentException(
+                    "Extension first character must be a dot!");
         }
     }
 }
