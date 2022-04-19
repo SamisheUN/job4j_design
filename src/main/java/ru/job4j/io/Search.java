@@ -42,7 +42,7 @@ public class Search {
             throw new IllegalArgumentException(
                     "Extension parameter is too short.");
         }
-        if (!(extention.charAt(0) == '=')) {
+        if (!(extention.charAt(0) == '.')) {
             throw new IllegalArgumentException(
                     "Extension first character must be a dot!");
         }
