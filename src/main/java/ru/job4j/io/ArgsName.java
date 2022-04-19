@@ -41,7 +41,7 @@ public class ArgsName {
     }
 
     private void entryFormatValidation(String line) {
-        if (!Pattern.matches("^-(.[^=]+)=(.+)$", line)) {
+        if (!Pattern.matches("^-(.+)=(.+)$", line)) {
             throw new IllegalArgumentException(
                     String.format("Incorrect entry format at: %s", line));
         }
