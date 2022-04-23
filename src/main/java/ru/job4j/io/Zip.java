@@ -8,13 +8,20 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class Zip {
-
-    public static void main(String[] args) {
-        Zip zip = new Zip();
+    public static void validation(String[] args) {
         ArgsName argsNames = ArgsName.of(args);
         if (!new File(argsNames.get("d")).exists()) {
             throw new IllegalArgumentException("Directory not found.");
         }
+        if (!(argsNames.get("e").charAt(0) == '.')) {
+            throw new IllegalArgumentException("Incorrect excluded extension format.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Zip zip = new Zip();
+        validation(args);
+        ArgsName argsNames = ArgsName.of(args);
         File zipFile = new File(argsNames.get("o"));
         List<Path> fileList = new ArrayList<>();
         try {
@@ -36,19 +43,6 @@ public class Zip {
                         new FileInputStream(String.valueOf(file)))) {
                     zip.write(out.readAllBytes());
                 }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void packSingleFile(File source, File target) {
-        try (ZipOutputStream zip = new ZipOutputStream(
-                new BufferedOutputStream(
-                        new FileOutputStream(target)))) {
-            zip.putNextEntry(new ZipEntry(source.getPath()));
-            try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(source))) {
-                zip.write(out.readAllBytes());
             }
         } catch (Exception e) {
             e.printStackTrace();
