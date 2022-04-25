@@ -52,7 +52,9 @@ public class ConsoleChat {
                 case (CONTINUE):
                     if (!(run == 1)) {
                         run = 1;
-                        logAndPrint("Продолжение работы.");
+                        logAndPrint("Продолжение работы."
+                                + System.lineSeparator()
+                                + rndPhrase(lisOfPhrases));
                     }
                     break;
                 default:
