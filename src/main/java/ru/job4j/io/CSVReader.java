@@ -24,7 +24,7 @@ public class CSVReader {
         if (filter.length() < 1) {
             throw new IllegalArgumentException("Filter is too short.");
         }
-        if (!out.equals("stdout")) {
+        if (!"stdout".equals(out)) {
             try {
                 Paths.get(path);
             } catch (InvalidPathException | NullPointerException ex) {
@@ -91,7 +91,7 @@ public class CSVReader {
      *                  либо значение stdout для вывода в консоль.
      */
     private static void printResult(StringBuilder line, String pathOrKey) {
-        if (pathOrKey.equals("stdout")) {
+        if ("stdout".equals(pathOrKey)) {
             System.out.print(line + System.lineSeparator());
         } else {
             try (FileOutputStream fos = new FileOutputStream(pathOrKey);
