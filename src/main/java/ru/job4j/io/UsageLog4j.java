@@ -16,9 +16,13 @@ public class UsageLog4j {
         Byte sixth = 6;
         char seventh = 7;
         Boolean eighth = true;
+        Float ninth = 9F;
         var nextLine = System.lineSeparator();
-        LOG.debug("{}User info: name: {}, age: {};{}3:{},{}4:{},{}5:{},{}6:{},{}7:{},{}8:{}",
+        LOG.debug(
+                "{}User info: name: {}, age: {};{}3:{},{}4:{},{}5:{},{}6:{},{}7:{},{}8:{},{}9:{}.",
                 nextLine, name, age, nextLine, third, nextLine, fourth,
-                nextLine, fifth, nextLine, sixth, nextLine, seventh, nextLine, eighth);
+                nextLine, fifth, nextLine, sixth, nextLine,
+                seventh, nextLine, eighth, nextLine, ninth
+        );
     }
 }
