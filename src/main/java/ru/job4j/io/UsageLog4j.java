@@ -10,13 +10,13 @@ public class UsageLog4j {
     public static void main(String[] args) {
         String name = "Andrey S";
         int age = 34;
-        Long third = 3L;
-        Double fourth = 4D;
-        Short fifth = 5;
-        Byte sixth = 6;
+        long third = 3L;
+        double fourth = 4D;
+        short fifth = 5;
+        byte sixth = 6;
         char seventh = 7;
-        Boolean eighth = true;
-        Float ninth = 9F;
+        boolean eighth = true;
+        float ninth = 9F;
         var nextLine = System.lineSeparator();
         LOG.debug(
                 "{}User info: name: {}, age: {};{}3:{},{}4:{},{}5:{},{}6:{},{}7:{},{}8:{},{}9:{}.",
