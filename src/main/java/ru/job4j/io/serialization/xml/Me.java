@@ -12,6 +12,7 @@ import java.util.Arrays;
 @XmlRootElement(name = "me")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Me {
+
     @XmlAttribute
     private String name;
     @XmlAttribute
