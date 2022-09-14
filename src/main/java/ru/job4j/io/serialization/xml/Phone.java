@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Phone {
     @XmlAttribute
     private String model;
+
     @XmlAttribute
     private long imei;
 
@@ -18,11 +19,16 @@ public class Phone {
         this.imei = imei;
     }
 
+    public String getModel() {
+        return model;
+    }
+
+    public long getImei() {
+        return imei;
+    }
+
     @Override
     public String toString() {
-        return "Phone{"
-                + "model=" + model
-                + ", imei=" + imei
-                + '}';
+        return "Phone{" + "model=" + model + ", imei=" + imei + '}';
     }
 }
