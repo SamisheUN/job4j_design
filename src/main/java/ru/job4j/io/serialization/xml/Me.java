@@ -42,29 +42,6 @@ public class Me {
         this.phone = phone;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public boolean isOnLine() {
-        return onLine;
-    }
-
-    @Override
-    public String toString() {
-        return "Me {"
-                + "name=" + name
-                + ", age=" + age
-                + ", online=" + onLine
-                + ", statuses=" + Arrays.toString(jobsArray)
-                + ", " + phone.toString()
-                + '}';
-    }
-
     public static void main(String[] args) throws JAXBException {
         final String[] arrayJobs = new String[]{
                 "кровельщик", "чертёжник", "техник"
@@ -91,18 +68,48 @@ public class Me {
             System.out.println(rsl);
         }
         System.out.println(System.lineSeparator() + "JSON example:");
-        JSONObject jsonPhone = new JSONObject(phone);
+
+        JSONObject jsonPhone = new JSONObject();
         jsonPhone.put("model", phone.getModel());
         jsonPhone.put("imei", phone.getImei());
         JSONObject jsonMe = new JSONObject();
-        JSONArray jsonJobs = new JSONArray(Arrays.stream(arrayJobs).toList());
         jsonMe.put("name", me.getName());
         jsonMe.put("age", me.getAge());
         jsonMe.put("onLine", me.isOnLine());
-        jsonMe.put("jobs", jsonJobs);
+        jsonMe.put("jobs", new JSONArray(Arrays.stream(arrayJobs).toList()));
         jsonMe.put("phone", jsonPhone);
         System.out.println("by put: " + jsonMe);
         System.out.println("from object: " + new JSONObject(me));
-        System.out.println(jsonPhone);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public boolean isOnLine() {
+        return onLine;
+    }
+
+    public String[] getJobsArray() {
+        return jobsArray;
+    }
+
+    public Phone getPhone() {
+        return phone;
+    }
+
+    @Override
+    public String toString() {
+        return "Me {"
+                + "name=" + name
+                + ", age=" + age
+                + ", online=" + onLine
+                + ", statuses=" + Arrays.toString(jobsArray)
+                + ", " + phone.toString()
+                + '}';
     }
 }
