@@ -91,7 +91,7 @@ public class Me {
             System.out.println(rsl);
         }
         System.out.println(System.lineSeparator() + "JSON example:");
-        JSONObject jsonPhone = new JSONObject();
+        JSONObject jsonPhone = new JSONObject(phone);
         jsonPhone.put("model", phone.getModel());
         jsonPhone.put("imei", phone.getImei());
         JSONObject jsonMe = new JSONObject();
@@ -103,5 +103,6 @@ public class Me {
         jsonMe.put("phone", jsonPhone);
         System.out.println("by put: " + jsonMe);
         System.out.println("from object: " + new JSONObject(me));
+        System.out.println(jsonPhone);
     }
 }
