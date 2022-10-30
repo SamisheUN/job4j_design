@@ -10,7 +10,6 @@ class BoxTest {
         Box box = new Box(0, 10);
         String name = box.whatsThis();
         assertThat(name).isEqualTo("Sphere");
-        System.lineSeparator();
     }
 
     @Test
@@ -18,7 +17,6 @@ class BoxTest {
         Box box = new Box(4, 10);
         String name = box.whatsThis();
         assertThat(name).isEqualTo("Tetrahedron");
-        System.lineSeparator();
     }
 
     @Test
@@ -26,7 +24,6 @@ class BoxTest {
         Box box = new Box(8, 10);
         String name = box.whatsThis();
         assertThat(name).isEqualTo("Cube");
-        System.lineSeparator();
     }
 
     @Test
@@ -34,7 +31,6 @@ class BoxTest {
         Box box = new Box(8, 10);
         int vertexCount = box.getNumberOfVertices();
         assertThat(vertexCount).isEqualTo(8);
-        System.lineSeparator();
     }
 
     @Test
@@ -42,7 +38,6 @@ class BoxTest {
         Box box = new Box(0, 10);
         int vertexCount = box.getNumberOfVertices();
         assertThat(vertexCount).isEqualTo(0);
-        System.lineSeparator();
     }
 
     @Test
@@ -50,7 +45,6 @@ class BoxTest {
         Box box = new Box(0, 10);
         boolean boxExist = box.isExist();
         assertThat(boxExist).isTrue();
-        System.lineSeparator();
     }
 
     @Test
@@ -58,7 +52,6 @@ class BoxTest {
         Box box = new Box(-1, 10);
         boolean boxExist = box.isExist();
         assertThat(boxExist).isFalse();
-        System.lineSeparator();
     }
 
     @Test
@@ -66,7 +59,6 @@ class BoxTest {
         Box box = new Box(0, 10);
         double boxArea = box.getArea();
         assertThat(boxArea).isBetween(1255d, 1257d);
-        System.lineSeparator();
     }
 
     @Test
@@ -74,7 +66,6 @@ class BoxTest {
         Box box = new Box(4, 10);
         double boxArea = box.getArea();
         assertThat(boxArea).isEqualTo(Math.sqrt(3) * (10 * 10));
-        System.lineSeparator();
     }
 
     @Test
@@ -82,6 +73,5 @@ class BoxTest {
         Box box = new Box(8, 10);
         double boxArea = box.getArea();
         assertThat(boxArea).isEqualTo(6 * (10 * 10));
-        System.lineSeparator();
     }
 }
