@@ -2,8 +2,8 @@ package ru.job4j.assertj;
 
 public class Box {
     private static final String UNKNOWN = "Unknown object";
-    private int vertex;
     private final int edge;
+    private int vertex;
     private String type = "";
 
     public Box(int vertex, int edge) {
@@ -13,17 +13,25 @@ public class Box {
     }
 
     private void init() {
-        type = switch (vertex) {
-            case 0 -> "Sphere";
-            case 4 -> "Tetrahedron";
-            case 8 -> "Cube";
-            default -> UNKNOWN;
-        };
+        switch (vertex) {
+            case 0:
+                type = "Sphere";
+                break;
+            case 4:
+                type = "Tetrahedron";
+                break;
+            case 8:
+                type = "Cube";
+            default:
+                type = UNKNOWN;
+                break;
+        }
         if (UNKNOWN.equals(type)) {
             vertex = -1;
         }
         if (edge <= 0) {
-            vertex = -1; type = UNKNOWN;
+            vertex = -1;
+            type = UNKNOWN;
         }
     }
 
