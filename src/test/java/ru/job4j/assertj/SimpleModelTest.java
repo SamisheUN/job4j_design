@@ -1,25 +1,26 @@
 package ru.job4j.assertj;
 
 import org.junit.Test;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class SimpleModelTest {
     @Test
-    void checkGetName() {
+    public void checkGetName() {
         SimpleModel sm = new SimpleModel();
         assertThatThrownBy(sm::getName)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void checkName() {
+    public void checkName() {
         SimpleModel sm = new SimpleModel();
         assertThatThrownBy(() -> sm.setName("name", 5))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void checkMessage() {
+    public void checkMessage() {
         SimpleModel sm = new SimpleModel();
         String word = "name";
         int number = 5;
@@ -30,7 +31,7 @@ class SimpleModelTest {
     }
 
     @Test
-    void checkWordMessage() {
+    public void checkWordMessage() {
         SimpleModel sm = new SimpleModel();
         String word = "name";
         int number = 5;
