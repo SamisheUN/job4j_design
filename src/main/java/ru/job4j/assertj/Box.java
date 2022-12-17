@@ -13,19 +13,13 @@ public class Box {
     }
 
     private void init() {
-        switch (vertex) {
-            case 0:
-                type = "Sphere";
-                break;
-            case 4:
-                type = "Tetrahedron";
-                break;
-            case 8:
-                type = "Cube";
-            default:
-                type = UNKNOWN;
-                break;
-        }
+        type = switch (vertex) {
+            case 0 -> "Sphere";
+            case 4 -> "Tetrahedron";
+            case 8 -> "Cube";
+            default -> UNKNOWN;
+        };
+
         if (UNKNOWN.equals(type)) {
             vertex = -1;
         }
