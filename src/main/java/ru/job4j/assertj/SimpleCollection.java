@@ -3,7 +3,7 @@ package ru.job4j.assertj;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class SimpleCollection <T> implements Iterable<T> {
+public class SimpleCollection<T> implements Iterable<T> {
     private final T[] container = (T[]) new Object[5];
 
     public SimpleCollection(T v0, T v1, T v2, T v3, T v4) {
