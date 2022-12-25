@@ -12,14 +12,6 @@ public class MatrixIt implements Iterator<Integer> {
         this.data = data;
     }
 
-    private boolean isPositionOverDimensions() {
-        return data.length == 0
-                || row > data.length - 1
-                || (row == data.length - 1
-                && (data[row].length == 0
-                || column > data[row].length - 1));
-    }
-
     private void nextCell() {
         if ((data[row].length == 0 || column == data[row].length - 1)) {
             row++;
@@ -31,11 +23,13 @@ public class MatrixIt implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        while (!isPositionOverDimensions()
+        while (row < data.length
                 && (data[row].length == 0 || data[row][column] == 0)) {
             nextCell();
         }
-        return !isPositionOverDimensions();
+        return row < data.length
+                && data[row].length >= 0
+                && column <= data[row].length;
     }
 
     @Override
