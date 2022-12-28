@@ -1,4 +1,4 @@
-package ru.job4j.io.experiments;
+package ru.job4j.experiments;
 
 import static java.lang.Character.isDigit;
 

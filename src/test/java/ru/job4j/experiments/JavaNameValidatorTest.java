@@ -2,7 +2,7 @@ package ru.job4j.experiments;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
-import static ru.job4j.io.experiments.JavaNameValidator.*;
+import static ru.job4j.experiments.JavaNameValidator.isNameValid;
 
 class JavaNameValidatorTest {
 
