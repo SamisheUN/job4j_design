@@ -1,12 +1,14 @@
 package ru.job4j.collection;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ForwardLinkedTest {
 
@@ -141,5 +143,23 @@ class ForwardLinkedTest {
         assertThat(second.hasNext()).isTrue();
         assertThat(second.next()).isEqualTo(2);
         assertThat(second.hasNext()).isFalse();
+    }
+
+    @Test
+    void whenIsTrashedItemExists() {
+        ForwardLinked<String> listMy = new ForwardLinked<>();
+        String secondElement = "second";
+        String thirdElement = "third";
+        listMy.add("zero");
+        listMy.add(secondElement);
+        listMy.add(thirdElement);
+        Iterator<String> iterator = listMy.iterator();
+        iterator.next();
+        iterator.next();
+        assertThat(iterator.next()).isEqualTo(thirdElement);
+        iterator = listMy.iterator();
+        iterator.next();
+        listMy.deleteFirst();
+        assertThat(thirdElement.equals(null));
     }
 }

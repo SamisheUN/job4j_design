@@ -34,24 +34,17 @@ public class ForwardLinked<T> implements Iterable<T> {
         return currentNode.item;
     }
 
-    /**
-     * node trash = head
-     *
-     * head = head.next
-     * trash.next = null;
-     * trsh.
-     *
-     * @return
-     */
     public T deleteFirst() {
         if (null == head) {
             throw new NoSuchElementException();
         }
         Node<T> trash = head;
+        var rsl = trash.item;
         head = head.next;
         trash.next = null;
+        trash.item = null;
         modCount++;
-        return trash.item;
+        return rsl;
     }
 
     @Override
