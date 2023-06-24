@@ -51,11 +51,11 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
 
             @Override
             public E next() {
-                E data = current.item;
-                current = current.next;
-                if (expectedModCount != modCount) {
+                if (!hasNext()) {
                     throw new ConcurrentModificationException();
                 }
+                E data = current.item;
+                current = current.next;
                 return data;
             }
         };
