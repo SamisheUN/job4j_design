@@ -2,7 +2,6 @@ package ru.job4j.collection;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class SimpleLinkedList<E> implements LinkedList<E> {
@@ -38,7 +37,29 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new SimpleLinkedListIterator();
+        Iterator<E> iterator = new Iterator<E>() {
+            private Node<E> current = head;
+            private int expectedModCount = modCount;
+
+            @Override
+            public boolean hasNext() {
+                if (expectedModCount != modCount) {
+                    throw new ConcurrentModificationException();
+                }
+                return null != current;
+            }
+
+            @Override
+            public E next() {
+                E data = current.item;
+                current = current.next;
+                if (expectedModCount != modCount) {
+                    throw new ConcurrentModificationException();
+                }
+                return data;
+            }
+        };
+        return iterator;
     }
 
     private static class Node<E> {
@@ -48,29 +69,6 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
         Node(E element, Node<E> next) {
             this.item = element;
             this.next = next;
-        }
-    }
-
-    private class SimpleLinkedListIterator implements Iterator<E> {
-        private Node<E> current = head;
-        private int expectedModCount = modCount;
-
-        @Override
-        public boolean hasNext() {
-            return null != current;
-        }
-
-        @Override
-        public E next() {
-            if (!hasNext()) {
-                throw new NoSuchElementException();
-            }
-            E data = current.item;
-            current = current.next;
-            if (expectedModCount != modCount) {
-                throw new ConcurrentModificationException();
-            }
-            return data;
         }
     }
 }
