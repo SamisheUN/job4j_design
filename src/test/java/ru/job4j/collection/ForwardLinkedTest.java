@@ -157,8 +157,6 @@ class ForwardLinkedTest {
         iterator.next();
         iterator.next();
         assertThat(iterator.next()).isEqualTo(thirdElement);
-        iterator = listMy.iterator();
-        iterator.next();
         listMy.deleteFirst();
         assertThat(thirdElement.equals(null));
     }
