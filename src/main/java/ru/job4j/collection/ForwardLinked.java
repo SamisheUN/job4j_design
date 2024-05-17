@@ -52,7 +52,7 @@ public class ForwardLinked<T> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        Iterator<T> iterator = new Iterator<T>() {
+        Iterator<T> iterator = new Iterator<>() {
             private ForwardLinked.Node<T> current = head;
             private int expectedModCount = modCount;
 

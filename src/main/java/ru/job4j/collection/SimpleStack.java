@@ -4,7 +4,7 @@ import java.util.NoSuchElementException;
 
 public class SimpleStack<T> {
 
-    private ForwardLinked<T> linked = new ForwardLinked<T>();
+    private ForwardLinked<T> linked = new ForwardLinked<>();
 
     public T pop() {
         if (linked.getSize() <= 0) {
