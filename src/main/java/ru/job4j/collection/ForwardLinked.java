@@ -64,10 +64,7 @@ public class ForwardLinked<T> implements Iterable<T> {
 
             @Override
             public T next() {
-                if (expectedModCount != modCount) {
-                    throw new ConcurrentModificationException();
-                }
-                if (current == null) {
+                if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
                 T data = current.item;
