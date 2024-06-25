@@ -2,14 +2,6 @@ package ru.job4j.collection;
 
 import java.util.NoSuchElementException;
 
-/**
- * Метод poll() - должен возвращать первое значение и удалять его из коллекции.
- * Метод push(T value) - помещает значение в конец.
- * <p>
- * Данные очереди нужно хранить в ru.job4j.collection.SimpleStack. Для этого задания нужны два стека.
- * Представьте, что у вас стопка с тарелками. Вам нужно достать нижнюю тарелку. Для этого вы перекладываете все тарелки в другую стопку.
- * Стопка - это стек. Для операции извлечения первой тарелки нужны две стопки.
- */
 public class SimpleQueue<T> {
     private final SimpleStack<T> input = new SimpleStack<>();
     private final SimpleStack<T> output = new SimpleStack<>();
