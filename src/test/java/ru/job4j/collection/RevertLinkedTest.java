@@ -3,7 +3,6 @@ package ru.job4j.collection;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-import java.util.NoSuchElementException;
 
 class RevertLinkedTest {
     private RevertLinked<Integer> linked;
