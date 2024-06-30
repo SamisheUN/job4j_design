@@ -44,7 +44,7 @@ public class ListUtils {
         ListIterator<T> iterator = list.listIterator();
         while (iterator.hasNext()) {
             if (elements.contains(iterator.next())) {
-                iterator.remove(); // Удаляем текущий элемент, если он содержится в списке элементов
+                iterator.remove();
             }
         }
     }
