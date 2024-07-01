@@ -29,6 +29,7 @@ class ListUtilsTest {
         ListUtils.addBefore(input, 0, 2);
         assertThat(input).hasSize(3).containsSequence(2, 1, 3);
     }
+
     @Test
     void whenAddBeforeLastElement() {
         input = new ArrayList<>(Arrays.asList(1, 2, 3));
