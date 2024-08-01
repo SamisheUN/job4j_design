@@ -4,7 +4,6 @@ import ru.job4j.list.SimpleArrayList;
 
 import java.util.Iterator;
 import java.util.Objects;
-import java.util.function.Predicate;
 
 public class SimpleArraySet<T> implements SimpleSet<T> {
 
@@ -21,11 +20,8 @@ public class SimpleArraySet<T> implements SimpleSet<T> {
 
     public boolean contains(T value) {
         boolean found = false;
-        Predicate<T> equalsPredicate = value == null
-                ? (Objects::isNull)
-                : (value::equals);
         for (int i = 0; i < set.size(); i++) {
-            if (equalsPredicate.test(set.get(i))) {
+            if (Objects.equals(value, set.get(i))) {
                 found = true;
                 break;
             }
