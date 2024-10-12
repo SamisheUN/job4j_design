@@ -20,7 +20,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
         }
         boolean rsl = false;
         MapEntry<K, V> entry = new MapEntry<>(key, value);
-        int index = indexFor(hash(Objects.hashCode(key)));
+        int index = keyToIndex(entry.key);
         if (table[index] == (null)) {
             table[index] = entry;
             count++;
@@ -33,8 +33,10 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
     @Override
     public V get(K key) {
         V result = null;
-        int index = indexFor(hash(Objects.hashCode(key)));
-        if (table[index] != null && Objects.equals(table[index].key, key)) {
+        int index = keyToIndex(key);
+        if (table[index] != null
+                && Objects.hashCode(table[index].key) == Objects.hashCode(key)
+                && Objects.equals(table[index].key, key)) {
             result = table[index].value;
         }
         return result;
@@ -43,9 +45,12 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
     @Override
     public boolean remove(K key) {
         boolean result = false;
-        int index = indexFor(hash(Objects.hashCode(key)));
-        if (table[index] != null && Objects.equals(table[index].key, key)) {
+        int index = keyToIndex(key);
+        if (table[index] != null
+                && Objects.hashCode(table[index].key) == Objects.hashCode(key)
+                && Objects.equals(table[index].key, key)) {
             table[index] = null;
+            count--;
             modCount++;
             result = true;
         }
@@ -91,6 +96,10 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
         }
     }
 
+    private int keyToIndex(K key) {
+        return key == null ? 0 : indexFor(hash(Objects.hashCode(key)));
+    }
+
     private int hash(int hashCode) {
         return hashCode ^ hashCode >>> 16;
     }
@@ -104,8 +113,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
         MapEntry<K, V>[] tableExpanded = new MapEntry[capacity];
         for (int i = 0; i < table.length; i++) {
             if (table[i] != null) {
-                int index = indexFor(hash(Objects.hashCode(table[i].key)));
-                tableExpanded[index] = table[i];
+                tableExpanded[keyToIndex(table[i].key)] = table[i];
             }
         }
         table = tableExpanded;
