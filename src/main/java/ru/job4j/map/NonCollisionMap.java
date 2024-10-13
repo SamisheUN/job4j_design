@@ -30,13 +30,17 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
         return rsl;
     }
 
+    private boolean keysComparsion(MapEntry<K, V> entry, K key) {
+        return entry != null
+                && Objects.hashCode(entry.key) == Objects.hashCode(key)
+                && Objects.equals(entry.key, key);
+    }
+
     @Override
     public V get(K key) {
         V result = null;
         int index = keyToIndex(key);
-        if (table[index] != null
-                && Objects.hashCode(table[index].key) == Objects.hashCode(key)
-                && Objects.equals(table[index].key, key)) {
+        if (keysComparsion(table[index], key)) {
             result = table[index].value;
         }
         return result;
@@ -46,9 +50,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
     public boolean remove(K key) {
         boolean result = false;
         int index = keyToIndex(key);
-        if (table[index] != null
-                && Objects.hashCode(table[index].key) == Objects.hashCode(key)
-                && Objects.equals(table[index].key, key)) {
+        if (keysComparsion(table[index], key)) {
             table[index] = null;
             count--;
             modCount++;
